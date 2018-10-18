@@ -7,7 +7,7 @@
 //  arraylist of particle objects. clicking on the screen creates a new
 //  object of the Generator class. 
 
-// modify the behavior of the particle (and potentially the particle 
+//  modify the behavior of the particle (and potentially the particle 
 //  generator to create an effect that simulates some kind of natural 
 //  phenonema. think about the youtube video we saw in class - 
 //  (https://www.youtube.com/watch?v=heW3vn1hP2E) that shows how a few 
