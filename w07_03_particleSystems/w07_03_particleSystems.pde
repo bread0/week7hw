@@ -20,24 +20,80 @@
 //  smaller as it reaches the end of its life. try changing particle speeds,'
 //  directions, and other behavior.
 
-ArrayList<Generator> generators;
+//ArrayList<Generator> generators;
+Soap test = new Soap(400, 400);
 
 void setup() {
-  size(800, 800);
-  generators = new ArrayList<Generator>();
+  size (800, 800);
+  //generators = new ArrayList<Generator>();
 }
 
 void draw() {
-  background(30);
-  for (int i = 0; i < generators.size(); i++) {
-    Generator g = generators.get(i);
-    g.addParticles();
-    g.drawParticles();
+  background(249, 204, 204);
+  //for (int i = 0; i < generators.size(); i++) {
+  //  Generator g = generators.get(i);
+  //  g.addParticles();
+  //  g.drawParticles();
+  //}
+  test.addStars();
+  test.drawStars();
+  
+}
+
+//void mousePressed() {
+//  generators.add(new Generator(mouseX, mouseY));
+//}
+
+class Soap {
+  ArrayList<Suds> stars;
+  float posX;
+  float posY;
+  float rate; 
+  
+  Soap(float posX, float posY) {
+    this.posX = posX;
+    this.posY = posY;
+    stars = new ArrayList<Suds>();
+  }
+  
+  void addStars() {
+    stars.add(new Suds(this.posX, this.posY));
+  }
+  
+  void drawStars() {
+    for (int i = 0; i < stars.size(); i++) {
+      Suds s = stars.get(i);
+      s.update();
+      s.display();
+    }
   }
 }
 
-void mousePressed() {
-  generators.add(new Generator(mouseX, mouseY));
+class Suds {
+  float posX;
+  float posY;
+  float velX;
+  float velY;
+  float life;
+  
+  Suds(float posX, float posY) {
+    this.posX = posX;
+    this.posY = posY;
+    this.velX = random(-5,5);
+    this.velY = random(-5,5);
+    life = 5;
+  }
+
+  void display() {
+    stroke(125, 212, 224);
+    ellipse(this.posX, this.posY, life, life);
+  }
+  
+  void update() {
+    life++;
+    this.posX += this.velX;
+    this.posY += this.velY;
+  }
 }
 
 class Particle {
@@ -46,6 +102,7 @@ class Particle {
   float velX;
   float velY;
   float life;
+  float alpha;
 
   Particle(float posX, float posY) {
     this.posX = posX;
@@ -56,11 +113,13 @@ class Particle {
   }
 
   void display() {
+    fill(255, alpha);
     ellipse(this.posX, this.posY, life, life);
   }
 
   void update() {
     life--;
+    alpha--;
     this.posX += this.velX;
     this.posY += this.velY;
 
@@ -70,38 +129,6 @@ class Particle {
     }
     if (this.posY > height || this.posY < 0) {
       this.velY *= -1;
-    }
-  }
-}
-
-class Generator {
-  ArrayList<Particle> particles;
-  float posX;
-  float posY;
-  float rate; 
-
-  Generator(float posX, float posY) {
-    this.posX = posX;
-    this.posY = posY;
-    particles = new ArrayList<Particle>();
-  }
-
-  void addParticles() {
-    particles.add(new Particle(this.posX, this.posY));
-  }
-
-  void drawParticles() {
-    for (int i = 0; i < particles.size(); i++) {
-      Particle b = particles.get(i);
-      b.update();
-      b.display();
-    } 
-
-    for (int i = particles.size() - 1; i >= 0; i--) {
-      Particle p = particles.get(i);
-      if (p.life < 0) {
-        particles.remove(i);
-      }
     }
   }
 }

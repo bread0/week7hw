@@ -14,9 +14,59 @@
 //  (or other) class. For example, maybe a Cookie Jar class would have an 
 //  ArrayList of type Cookie. 
 
-void setup() {}
+void setup() {
+  Milk milk = new Milk("chocolate");
+  milk.milkInfo();
+  milk.drink();
+  
+  Jar jar = new Jar("small");
+  jar.jarInfo();
+  jar.getCookie();
+}
 
 void draw() {}
+
+class Milk {
+  String flavor;
+  
+  Milk(String whatFlavor) {
+    println("Got ye some " + whatFlavor + " milk out of this here refrigerator.");
+    flavor = whatFlavor;
+  }
+  
+  void milkInfo() {
+    println("This be " + flavor + " milk.");
+  }
+  
+  void drink() {
+    println("Ye drink the milk.");
+  }
+}
+
+class Jar {
+  String size;
+  //int[] amount = new int[20];
+  int amount = 20;
+  
+  Jar(String whatSize) {
+    println("Grabbed a " + whatSize + " jar off the shelf.");
+    size = whatSize;
+  }
+  
+  Jar() {
+     println("Grabbed a jar off the shelf.");
+  }
+  
+  void jarInfo() {
+    println("This is a " + size + " jar with " + amount + " cookies in it.");
+  }
+  
+  void getCookie() {
+    println("You grab a cookie from the jar.");
+    amount--;
+  }
+  
+}
 
 class Cookie {
   String kind;
