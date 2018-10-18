@@ -75,9 +75,9 @@ class Gradient {
     // this crashes the code whoops!
     // how can i have the gradient reverse back to 0 from 255?
     
-    //if (gradColor[i] == 255) {
-    //  i--;
-    //}
+    if (gradColor[i] == 255) {
+      gradColor[i] = -gradColor[i];
+    }
    
   }
 }
